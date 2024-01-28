@@ -28,9 +28,8 @@
     "start": "cd symtrade-backend && npm run start",
     "install": "cd symtrade-backend && npm install && cd ../symtrade-frontend && npm install",
     "postinstall": "npm run build",
-    "heroku-postbuild": "npm run build",
     "lint": "cd symtrade-backend && npm run lint && cd ../symtrade-frontend && npm run lint",
-    "test" : "cd symtrade-backend && npm run test && cd ../symtrade-frontend && npm run test",
+    "test": "cd symtrade-backend && npm run test && cd ../symtrade-frontend && npm run test",
     "develop": "concurrently \"cd symtrade-backend && npm run develop\" \"cd symtrade-frontend && npm run develop\"",
     "folders": "powershell -Command \"function Print-Folders { param([string]$path = '.', [int]$indent = 0); Get-ChildItem -Path $path -Directory | Where-Object { $_.FullName -notmatch 'node_modules' } | ForEach-Object { Write-Output (' ' * $indent + $_.Name); Print-Folders -path $_.FullName -indent ($indent + 2) }; }; Print-Folders\"",
     "files": "powershell -Command \"function Print-Folders { param([string]$path = '.', [int]$indent = 0); Get-ChildItem -Path $path | Where-Object { $_.FullName -notmatch 'node_modules' } | ForEach-Object { Write-Output (' ' * $indent + $_.Name); if ($_.PSIsContainer) { Print-Folders -path $_.FullName -indent ($indent + 2) } }; }; Print-Folders\""
@@ -39,6 +38,7 @@
     "concurrently": "^6.2.0"
   },
   "engines": {
-    "node": "18.16.0"
+    "node": "18.16.0",
+    "npm": "9.5.1"
   }
 }
