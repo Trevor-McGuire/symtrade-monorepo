@@ -1,0 +1,43 @@
+{
+  "name": "symtrade",
+  "version": "0.0.0",
+  "description": "Simulated market trading app with real time and historical trading capabilities.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trevor-McGuire/Symtrade.git"
+  },
+  "keywords": [
+    "simulated",
+    "trading",
+    "market",
+    "real-time",
+    "historical",
+    "finance",
+    "stocks",
+    "investment",
+    "portfolio"
+  ],
+  "author": "Trevor McGuire <tm@trevmcdev.com> (https://trevmcdev.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Trevor-McGuire/Symtrade/issues"
+  },
+  "homepage": "https://github.com/Trevor-McGuire/Symtrade#readme",
+  "scripts": {
+    "build": "cd symtrade-backend && npm run build && cd ../symtrade-frontend && npm run build",
+    "start": "cd symtrade-backend && npm run start",
+    "install": "cd symtrade-backend && npm install && cd ../symtrade-frontend && npm install",
+    "postinstall": "npm run build",
+    "lint": "cd symtrade-backend && npm run lint && cd ../symtrade-frontend && npm run lint",
+    "test" : "cd symtrade-backend && npm run test && cd ../symtrade-frontend && npm run test",
+    "develop": "concurrently \"cd symtrade-backend && npm run develop\" \"cd symtrade-frontend && npm run develop\"",
+    "folders": "powershell -Command \"function Print-Folders { param([string]$path = '.', [int]$indent = 0); Get-ChildItem -Path $path -Directory | Where-Object { $_.FullName -notmatch 'node_modules' } | ForEach-Object { Write-Output (' ' * $indent + $_.Name); Print-Folders -path $_.FullName -indent ($indent + 2) }; }; Print-Folders\"",
+    "files": "powershell -Command \"function Print-Folders { param([string]$path = '.', [int]$indent = 0); Get-ChildItem -Path $path | Where-Object { $_.FullName -notmatch 'node_modules' } | ForEach-Object { Write-Output (' ' * $indent + $_.Name); if ($_.PSIsContainer) { Print-Folders -path $_.FullName -indent ($indent + 2) } }; }; Print-Folders\""
+  },
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  },
+  "engines": {
+    "node": "18.16.0"
+  }
+}

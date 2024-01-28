@@ -1,0 +1,12 @@
+{
+  "name": "symtrade-sdd",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "sdd": "node ./assets/scripts/sdd.js"
+  },
+  "devDependencies": {
+    "inquirer": "^9.2.12"
+  }
+}
