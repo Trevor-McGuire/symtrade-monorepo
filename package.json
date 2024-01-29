@@ -27,7 +27,6 @@
     "build": "cd symtrade-backend && npm run build && cd ../symtrade-frontend && npm run build",
     "start": "cd symtrade-backend && npm run start",
     "install": "cd symtrade-backend && npm install && cd ../symtrade-frontend && npm install",
-    "postinstall": "npm run build",
     "lint": "cd symtrade-backend && npm run lint && cd ../symtrade-frontend && npm run lint",
     "test": "cd symtrade-backend && npm run test && cd ../symtrade-frontend && npm run test",
     "develop": "concurrently \"cd symtrade-backend && npm run develop\" \"cd symtrade-frontend && npm run develop\"",
