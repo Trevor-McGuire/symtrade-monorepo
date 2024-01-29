@@ -24,7 +24,7 @@ const startApolloServer = async () => {
   );
 
   if (process.env.NODE_ENV === 'production') {
-    const clientDistPath = path.join(__dirname, '../frontend/dist');
+    const clientDistPath = path.join(__dirname, '../../../symtrade-frontend/dist');
     app.use(express.static(clientDistPath));
 
     app.get('*', (req, res) => {
