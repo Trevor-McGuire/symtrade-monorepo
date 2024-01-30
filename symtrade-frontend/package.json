@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "npx eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix && prettier --write .",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.8.10",
@@ -22,8 +23,9 @@
     "@testing-library/jest-dom": "^6.2.1",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-router-dom": "^5.3.3",
     "@types/testing-library__jest-dom": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
@@ -75,15 +77,12 @@
     "tabWidth": 2
   },
   "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "jsdom",
+    "roots": ["<rootDir>/src"],
+    "testMatch": ["**/__tests__/**/*.+(ts|tsx|js)", "**/?(*.)+(spec|test).+(ts|tsx|js)"],
     "transform": {
-      "^.+\\.(ts|tsx)$": [
-        "ts-jest",
-        {
-          "tsconfig": "tsconfig.test.json"
-        }
-      ]
-    }
+      "^.+\\.(ts|tsx)$": ["ts-jest", {"tsconfig": "tsconfig.test.json"}]
+    },
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom"
   }
 }
