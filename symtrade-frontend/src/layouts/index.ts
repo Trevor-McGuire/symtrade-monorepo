@@ -1,5 +1,5 @@
-import Home from './Home';
-import SignIn from './Sign-in';
-import SignedIn from './Signed-in';
+import HomeLayout from './Home';
+import SignInLayout from './Sign-in';
+import SignedInLayout from './Signed-in';
 
-export { Home, SignIn, SignedIn };
+export { HomeLayout, SignInLayout, SignedInLayout };

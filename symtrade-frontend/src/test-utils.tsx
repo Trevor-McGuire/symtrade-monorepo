@@ -1,8 +1,19 @@
+window.matchMedia = window.matchMedia || function() {
+  return {
+      matches: false,
+      addListener: function() {},
+      removeListener: function() {},
+      addEventListener: function() {},
+      removeEventListener: function() {}
+  };
+};
+
 import { render as rtlRender, RenderOptions, RenderResult } from '@testing-library/react';
 import { ApolloProvider, ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import { MockLink } from '@apollo/client/testing';
 import { BrowserRouter as Router } from 'react-router-dom';
 import React, { ReactElement } from 'react';
+import { MantineProvider } from '@mantine/core';
 import mockResponse from './mockResponse';
 
 interface CustomRenderOptions extends RenderOptions {
@@ -26,7 +37,9 @@ function render(
     return (
       <ApolloProvider client={client}>
         <Router>
-          {children}
+          <MantineProvider>
+            {children}
+          </MantineProvider>
         </Router>
       </ApolloProvider>
     );

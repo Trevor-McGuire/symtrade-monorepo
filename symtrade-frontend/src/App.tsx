@@ -3,16 +3,37 @@ import {
   ApolloProvider,
   InMemoryCache,
   createHttpLink,
+  ApolloLink,
 } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { StrictMode } from 'react';
 import { Outlet } from 'react-router-dom';
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
+import { AuthProvider } from "./auth-context/auth-context";
 
-const link = createHttpLink({
-  uri: '/graphql', // Adjust the URI to match your server endpoint
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+let activeSession = localStorage.getItem("activeSession");
+activeSession = activeSession ? JSON.parse(activeSession) : null;
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const activeSession = localStorage.getItem('activeSession');
+  const token = activeSession ? JSON.parse(activeSession).token : null;
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  };
 });
 
 const client = new ApolloClient({
-  link: link,
+  link: ApolloLink.from([authLink, httpLink]),
   cache: new InMemoryCache(),
   connectToDevTools: true,
 });
@@ -21,9 +42,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <StrictMode>
-        <div className="App">
-          <Outlet />
-        </div>
+        <AuthProvider>
+          <MantineProvider>
+            <div className="App">
+              <Outlet />
+            </div>
+          </MantineProvider>
+        </AuthProvider>
       </StrictMode>
     </ApolloProvider>
   );
