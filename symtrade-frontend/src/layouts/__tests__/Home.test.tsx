@@ -1,6 +1,6 @@
 import { render, screen } from '../../test-utils';
 import '@testing-library/jest-dom';
-import Home from '../Home';
+import Home from '../HomeLayout';
 
 describe('Home', () => {
   it('renders the Home component', () => {

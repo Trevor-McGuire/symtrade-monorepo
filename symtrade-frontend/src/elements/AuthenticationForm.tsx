@@ -1,4 +1,4 @@
-import { useToggle, upperFirst } from '@mantine/hooks';
+import { upperFirst } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
 import {
   TextInput,
@@ -24,9 +24,11 @@ import { REGISTER_MUTATION } from '../graphql/mutations/register';
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export function AuthenticationForm(props: PaperProps) {
-  const [type, toggle] = useToggle(['login', 'register']);
+  const location = useLocation();
+  const [type, setType] = useState(location.pathname.slice(1));
   const [login, { error: loginError }] = useMutation(LOGIN_MUTATION);
   const [register, { error: registerError }] = useMutation(REGISTER_MUTATION);
   const [loading, setLoading] = useState(false);
@@ -35,8 +37,17 @@ export function AuthenticationForm(props: PaperProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(`/${type}`);
-  }, [type, navigate]);
+    const newType = location.pathname.slice(1);
+    if (newType !== type) {
+      setType(newType);
+    }
+  }, [location, type]);
+
+  const toggle = () => {
+    const newType = type === 'login' ? 'register' : 'login';
+    setType(newType);
+    navigate(`/${newType}`);
+  };
 
   const timestatmp = new Date().getTime();
   const form = useForm({
@@ -95,7 +106,7 @@ export function AuthenticationForm(props: PaperProps) {
         );
       }
     }
-    navigate('/signed-in');
+    navigate('/dashboard');
     setLoading(false);
   };
 

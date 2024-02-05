@@ -4,7 +4,7 @@ import App from './App.jsx';
 import {
   HomeLayout,
   SignInLayout,
-  SignedInLayout,
+  DashboardLayout,
 } from './layouts';
 
 const router = createBrowserRouter([
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
         element: <SignInLayout />,
       },
       {
-        path: 'signed-in',
-        element: <SignedInLayout />,
+        path: 'dashboard',
+        element: <DashboardLayout />,
       }
     ],
   },

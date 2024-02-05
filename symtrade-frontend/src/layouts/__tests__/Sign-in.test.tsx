@@ -1,6 +1,6 @@
 import { render, screen } from '../../test-utils';
 import '@testing-library/jest-dom';
-import SignInLayout from '../Sign-in';
+import SignInLayout from '../AuthenticationLayout';
 
 describe('Home', () => {
   it('renders the SignInLayout component', () => {

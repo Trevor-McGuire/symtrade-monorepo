@@ -1,5 +1,5 @@
-import HomeLayout from './Home';
-import SignInLayout from './Sign-in';
-import SignedInLayout from './Signed-in';
+import HomeLayout from './HomeLayout';
+import SignInLayout from './AuthenticationLayout';
+import DashboardLayout from './DashboardLayout';
 
-export { HomeLayout, SignInLayout, SignedInLayout };
+export { HomeLayout, SignInLayout, DashboardLayout };

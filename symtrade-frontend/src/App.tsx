@@ -11,6 +11,7 @@ import { Outlet } from 'react-router-dom';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { AuthProvider } from "./auth-context/auth-context";
+import HeaderEl from "./elements/HeaderEl";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,6 +46,7 @@ function App() {
         <AuthProvider>
           <MantineProvider>
             <div className="App">
+              <HeaderEl />
               <Outlet />
             </div>
           </MantineProvider>
