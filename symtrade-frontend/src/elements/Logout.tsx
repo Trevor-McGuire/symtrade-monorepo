@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { LOGOUT_MUTATION } from '../graphql/mutations/logout';
+import { LOGOUT_MUTATION } from '../graphql/mutations';
 import { useAuth } from '../auth-context/auth-context';
 import { useNavigate } from 'react-router-dom';
 

@@ -14,9 +14,7 @@ const LOGIN_MUTATION = gql`
     }
   }
 `;
-
-// Define your mock response
-const mockResponse = {
+const mockLoginResponse = {
   request: {
     query: LOGIN_MUTATION,
     variables: {
@@ -38,4 +36,42 @@ const mockResponse = {
   },
 };
 
-export default mockResponse;
+
+
+const REGISTER_MUTATION = gql`
+  mutation Register($username: String!, $email: String!, $password: String!) {
+    register(username: $username, email: $email, password: $password) {
+      user {
+        id
+        username
+        email
+      }
+    }
+  }
+`;
+const mockRegisterResponse = {
+  request: {
+    query: REGISTER_MUTATION,
+    variables: {
+      username: 'test',
+      email: 'test@test.com',
+      password: 'test',
+    },
+  },
+  result: {
+    data: {
+      register: {
+        user: {
+          id: '1',
+          username: 'test',
+          email: 'test@test.com',
+        },
+      },
+    },
+  },
+};
+
+export {
+  mockLoginResponse,
+  mockRegisterResponse,
+};

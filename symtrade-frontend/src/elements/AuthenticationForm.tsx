@@ -13,18 +13,16 @@ import {
   Anchor,
   Stack,
   Box,
+  LoadingOverlay,
 } from '@mantine/core';
 // import { GoogleButton } from './GoogleButton';
 // import { TwitterButton } from './TwitterButton';
-import { LoadingOverlay } from '@mantine/core';
 import { useState } from 'react';
 import { useAuth } from '../auth-context/auth-context';
-import { LOGIN_MUTATION } from '../graphql/mutations/login';
-import { REGISTER_MUTATION } from '../graphql/mutations/register';
+import { LOGIN_MUTATION, REGISTER_MUTATION } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 export function AuthenticationForm(props: PaperProps) {
   const location = useLocation();
@@ -49,12 +47,15 @@ export function AuthenticationForm(props: PaperProps) {
     navigate(`/${newType}`);
   };
 
-  const timestatmp = new Date().getTime();
+  // const timestatmp = new Date().getTime();
   const form = useForm({
     initialValues: {
-      name: 'user' + timestatmp.toString(),
-      passwordA: 'asdfasdf',
-      passwordB: 'asdfasdf',
+      // name: 'user' + timestatmp.toString(),
+      // passwordA: 'asdfasdf',
+      // passwordB: 'asdfasdf',
+      name: '',
+      passwordA: '',
+      passwordB: '',
       terms: true,
       type,
     },
@@ -129,9 +130,11 @@ export function AuthenticationForm(props: PaperProps) {
           my="lg"
         />
 
-        <form data-testid="sign-in-element" onSubmit={handleSubmit}>
+        <form data-testid="authentication-form" onSubmit={handleSubmit}>
           <Stack>
             <TextInput
+              required
+              data-testid="username-input"
               label="Username"
               placeholder="Your name"
               value={form.values.name}
@@ -143,6 +146,7 @@ export function AuthenticationForm(props: PaperProps) {
 
             <PasswordInput
               required
+              data-testid="passwordA-input"
               label="Password"
               placeholder="pAssw0rd!123"
               value={form.values.passwordA}
@@ -160,6 +164,7 @@ export function AuthenticationForm(props: PaperProps) {
               <>
                 <PasswordInput
                   required
+                  data-testid="passwordB-input"
                   label="Repeat password"
                   placeholder="pAssw0rd!123"
                   value={form.values.passwordB}
@@ -173,6 +178,7 @@ export function AuthenticationForm(props: PaperProps) {
                   radius="md"
                 />
                 <Checkbox
+                  data-testid="terms-checkbox"
                   label="I accept terms and conditions"
                   checked={form.values.terms}
                   onChange={(event) =>
